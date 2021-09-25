@@ -27,6 +27,16 @@ protected:
 	UFUNCTION()
 	void OnPawnSeen(APawn* SeenPawn);
 
+	UFUNCTION()
+		// const FVector& means use the address but don't allow it to be changed
+		void OnNoiseHeard(APawn* NoiseInstigator, const FVector& Location, float Volume);
+
+	FRotator OriginalRotation;
+	FTimerHandle TimerHandle_ResetOrientation;
+
+	UFUNCTION()
+	void ResetOrientation();
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
