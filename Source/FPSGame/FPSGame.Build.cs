@@ -8,6 +8,7 @@ public class FPSGame : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		// Dependencies listed here, AIModule is required if we are to use Unreal Artificial Intelligence for PawnSensing
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "AIModule" });
 	}
 }
