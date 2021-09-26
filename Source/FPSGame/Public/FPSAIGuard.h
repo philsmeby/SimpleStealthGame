@@ -29,6 +29,20 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	// Property to allow for guard to walk a patrol route
+	UPROPERTY(EditInstanceOnly, Category = "AI")
+	bool bPatrol;
+
+	// A way for us to know the current control point we are at or moving to.
+	AActor* CurrentPatrolPoint;
+
+	// meta disables properties if the bPatrol is false
+	UPROPERTY(EditInstanceOnly, Category = "AI", meta = (EditCondition = "bPatrol"))
+	AActor* FirstPatrolPoint;
+
+	UPROPERTY(EditInstanceOnly, Category = "AI", meta = (EditCondition = "bPatrol"))
+	AActor* SecondPatrolPoint;
+
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UPawnSensingComponent* PawnSensingComp;
 
@@ -51,6 +65,8 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "AI")
 	void OnStateChanged(EAIState NewState);
+
+	void MoveToNextPatrolPoint();
 
 public:	
 	// Called every frame
